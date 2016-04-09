@@ -1,0 +1,83 @@
+<table class="table">
+  <tr class="Fixed">
+    <th class="big">
+      Name
+    </th>
+    <th class="big">
+      Caffeine Scale
+    </th>
+    <th class="ingredients big">
+      Ingredients
+    </th>
+    <th class="small">
+      Rating
+    </th>
+    <th class="small">
+      Quantity
+    </th>
+    <th class="small">
+      Price
+    </th>
+    <th class="small">
+      Sub Total
+    </th>
+    <th class="small">
+
+    </th>
+  </tr>
+  <tr ng-repeat="item in cart">
+    <td>
+      {{item.name}}
+      <img ng-src="{{item.imageUrl}}" alt="" />
+    </td>
+    <td>
+      {{item.caffeineScale}}
+    </td>
+    <td class="ingredients">
+      <ul>
+        <li ng-repeat="ingredient in item.ingredients | split:', '">{{ingredient}}</li>
+      </ul>
+    </td>
+    <td>
+      {{item.rating}}
+    </td>
+    <td>
+      <input type="text" size="2" ng-model="quantity" ng-init="quantity = item.quantity" ng-change="updateCart(item._id, quantity)" value="{{item.quantity}}">
+    </td>
+    <td>
+      {{item.price | centsToDollars | currency}}
+    </td>
+    <td>
+      {{(item.quantity * item.price / 100) | currency }}
+    </td>
+    <td>
+      <button ng-click="removeItem(item._id)" class="btn btn-danger">Remove Me</button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
+    <td>
+      {{cartTotal | centsToDollars | currency}}
+    </td>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
+  </tr>
+</table>

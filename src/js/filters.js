@@ -15,3 +15,10 @@ app.filter('Capitalize', function () {
     return input[0].toUpperCase() + input.substring(1);
   };
 });
+
+app.filter('split', function () {
+  return function (input, delimiter) {
+    delimiter = delimiter || ',';
+    return input.split(delimiter);
+  };
+});

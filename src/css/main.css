@@ -7,10 +7,28 @@ table, th, td {
 table th:first-child {
   width: 25%;
 }
-table th:first-child span {
-  position: relative;
-  right: 10%;
-}
 table th:last-child {
   width: 75%;
+}
+table .big{
+  width: 20%;
+}
+table .small {
+  width: 8%;
+}
+
+.fixed {
+  position: fixed;
+}
+.ingredients {
+  width: 20%;
+  position: relative;
+}
+.ingredients ul{
+  position: absolute;
+  left: -10%;
+}
+.box {
+  border: 1px solid black;
+  text-align: center;
 }

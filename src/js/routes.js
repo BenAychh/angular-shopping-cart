@@ -13,11 +13,10 @@ app.config(function ($routeProvider) {
       templateUrl: 'partials/cart.html',
       controller: 'cartControl',
     })
-
-    // .when('/checkout', {
-    //   templateUrl: 'partials/checkout.html',
-    //   controller: 'checkoutControl',
-    // })
+    .when('/checkout', {
+      templateUrl: 'partials/checkout.html',
+      controller: 'checkoutControl',
+    })
     .otherwise({
       redirectTo: '/cart',
     });

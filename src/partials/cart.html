@@ -6,14 +6,14 @@
   </select>
   Search by name:
   <input type="text" ng-model="search.name">
-  <button type="button" class="btn btn-success pull-right"><strong>Checkout |</strong> Bag:
+  <a href="#/checkout"><button type="button" class="btn btn-success pull-right"><strong>Checkout |</strong> Bag:
     <ng-pluralize count="cartStatus" when="
       {
         '0': 'Empty',
         '1': '1 Item',
         'other': '{} Items',
       }">
-    </ng-pluralize></button>
+    </ng-pluralize></button></a>
 </p>
 <table class="table">
   <tr>
@@ -22,8 +22,8 @@
     </th>
     <th>
       Information
-      <span class="pull-right">Sort By Price: <select ng-change="getTeas()" ng-model="priceSorter" class="" name="">
-        <option value="">Choose</option>
+      <span class="pull-right">Sort By Price: <select ng-init="priceSorter='ignore'" ng-change="getTeas()" ng-model="priceSorter" class="" name="">
+        <option value="ignore">Choose</option>
         <option value="true">Low To High</option>
         <option value="false">High To Low</option>
       </select></span>
@@ -51,9 +51,7 @@
       <p>
         <span>Price:</span> {{tea.price | centsToDollars | currency}}
       </p>
-      <p>
-        <span>Caffeine Scale:</span> {{tea.caffeineScale}}
-      </p>
+      <caffeine-meter caffeine="tea.caffeineScale"></caffeine-meter>
       <p>
         <span>Ingredients:</span> {{tea.ingredients}}
       </p>

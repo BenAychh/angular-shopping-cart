@@ -4,20 +4,9 @@ app.service('itemsAndCart', function () {
   teaItems.forEach((teaItem) => {
     cart[teaItem._id] = 0;
   });
+
   itemsAndCart.getItems = function () {
     return teaItems;
-
-    // return teaItems.map(function (teaItem) {
-    //   var teaItem = JSON.parse(JSON.stringify(teaItem));
-    //   teaItem.price = teaItem.price / 100;
-    //   if (teaItem.inStock) {
-    //     teaItem.inStock = 'Yes';
-    //   } else {
-    //     teaItem.inStock = 'No';
-    //   }
-    //
-    //   return teaItem;
-    // });
   };
 
   itemsAndCart.getCategories = function () {
@@ -37,7 +26,17 @@ app.service('itemsAndCart', function () {
   };
 
   itemsAndCart.getCart = function () {
+    return teaItems.filter((teaItem) => cart[teaItem._id] != 0)
+    .map((teaItem) => {
+      teaItem.quantity = cart[teaItem._id];
+      return teaItem;
+    });
+  };
 
+  itemsAndCart.getCartTotals = function () {
+    return teaItems.filter((teaItem) => cart[teaItem._id] != 0)
+    .reduce((previous, teaItem) =>
+      previous += cart[teaItem._id] * teaItem.price, 0);
   };
 
   itemsAndCart.getCartCount = function () {
@@ -47,6 +46,10 @@ app.service('itemsAndCart', function () {
 
   itemsAndCart.addToCart = function (id, quantity) {
     cart[id] += Number(quantity);
+  };
+
+  itemsAndCart.updateQuantity = function (id, quantity) {
+    cart[id] = Number(quantity);
   };
 
   return itemsAndCart;

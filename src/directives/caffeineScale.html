@@ -1,0 +1,9 @@
+<div class="box gauge pull-right">
+  <h3 class="center">Caffeine</h3>
+  mg/service: {{caffeine}}<br />
+  Rating: <span ng-if="caffeine < 100">LOW</span><span ng-if="caffeine >= 100 && caffeine < 200">MEDIUM</span><span ng-if="caffeine >= 200">HIGH</span>
+  <div class="mask">
+    <div class="semi-circle"></div>
+    <div class="semi-circle--mask" style="-webkit-transform: rotate({{caffeine / 250 * 180}}deg);-moz-transform: rotate({{caffeine / 250 * 180}}deg);transform: rotate({{caffeine / 250 * 180}}deg);"></div>
+  </div>
+</div>
