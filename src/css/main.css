@@ -1,3 +1,16 @@
 select option {
   text-transform: capitalize;
 }
+table, th, td {
+  border: 1px solid rgb(233, 233, 233);
+}
+table th:first-child {
+  width: 25%;
+}
+table th:first-child span {
+  position: relative;
+  right: 10%;
+}
+table th:last-child {
+  width: 75%;
+}

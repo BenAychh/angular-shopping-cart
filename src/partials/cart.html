@@ -2,19 +2,27 @@
   Search by:
   <select ng-model="search.categories">
     <option value="">Choose</option>
-    <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+    <option ng-repeat="category in categories" value="{{category}}">{{category | Capitalize}}</option>
   </select>
   Search by name:
   <input type="text" ng-model="search.name">
+  <button type="button" class="btn btn-success pull-right"><strong>Checkout |</strong> Bag:
+    <ng-pluralize count="cartStatus" when="
+      {
+        '0': 'Empty',
+        '1': '1 Item',
+        'other': '{} Items',
+      }">
+    </ng-pluralize></button>
 </p>
-<table>
+<table class="table">
   <tr>
     <th>
       Tea
     </th>
     <th>
       Information
-      <span>Sort By Price: <select ng-change="getTeas()" ng-model="priceSorter" class="" name="">
+      <span class="pull-right">Sort By Price: <select ng-change="getTeas()" ng-model="priceSorter" class="" name="">
         <option value="">Choose</option>
         <option value="true">Low To High</option>
         <option value="false">High To Low</option>
@@ -28,7 +36,7 @@
     <td>
       <h3>
         {{tea.name}}
-        <span class="cartAdder">
+        <span class="cartAdder pull-right">
           Quantity: <select class="" ng-model="quantity">
           <option value="1">1</option>
           <option value="2">2</option>
@@ -41,7 +49,7 @@
       </span>
       </h3>
       <p>
-        <span>Price:</span> {{tea.price | currency}}
+        <span>Price:</span> {{tea.price | centsToDollars | currency}}
       </p>
       <p>
         <span>Caffeine Scale:</span> {{tea.caffeineScale}}
@@ -53,7 +61,7 @@
         <span>Rating:</span> {{tea.rating}}
       </p>
       <p>
-        <span>In Stock?</span> {{tea.inStock}}
+        <span>In Stock?</span> {{tea.inStock | trueToYes}}
       </p>
       <p>
         <span>Categories</span>:

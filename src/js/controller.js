@@ -1,5 +1,6 @@
 app.controller('cartControl', function ($scope, itemsAndCart) {
   $scope.categories = itemsAndCart.getCategories();
+  $scope.cartStatus = itemsAndCart.getCartCount();
   $scope.getTeas = function () {
     if ($scope.priceSorter != undefined && $scope.priceSorter != '') {
       $scope.teas = itemsAndCart.getItems().sort(function (a, b) {
@@ -17,8 +18,12 @@ app.controller('cartControl', function ($scope, itemsAndCart) {
   $scope.getTeas();
 
   $scope.addToCart = function (id, quantity) {
-    console.log(id, quantity);
-  }
+    if (quantity == undefined || quantity == '') {
+      quantity = 1;
+    }
 
+    itemsAndCart.addToCart(id, quantity);
+    $scope.cartStatus = itemsAndCart.getCartCount();
+  };
 
 });
