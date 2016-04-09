@@ -1,0 +1,68 @@
+<p>
+  Search by:
+  <select ng-model="search.categories">
+    <option value="">Choose</option>
+    <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+  </select>
+  Search by name:
+  <input type="text" ng-model="search.name">
+</p>
+<table>
+  <tr>
+    <th>
+      Tea
+    </th>
+    <th>
+      Information
+      <span>Sort By Price: <select ng-change="getTeas()" ng-model="priceSorter" class="" name="">
+        <option value="">Choose</option>
+        <option value="true">Low To High</option>
+        <option value="false">High To Low</option>
+      </select></span>
+    </th>
+  </tr>
+  <tr ng-repeat="tea in teas | filter:search:strict">
+    <td>
+      <img ng-src="{{tea.imageUrl}}" alt="" />
+    </td>
+    <td>
+      <h3>
+        {{tea.name}}
+        <span class="cartAdder">
+          Quantity: <select class="" ng-model="quantity">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+        <button type="button" class="btn btn-success" ng-click="addToCart(tea._id, quantity)">Add To Bag</button>
+      </span>
+      </h3>
+      <p>
+        <span>Price:</span> {{tea.price | currency}}
+      </p>
+      <p>
+        <span>Caffeine Scale:</span> {{tea.caffeineScale}}
+      </p>
+      <p>
+        <span>Ingredients:</span> {{tea.ingredients}}
+      </p>
+      <p>
+        <span>Rating:</span> {{tea.rating}}
+      </p>
+      <p>
+        <span>In Stock?</span> {{tea.inStock}}
+      </p>
+      <p>
+        <span>Categories</span>:
+        <ul>
+          <li ng-repeat="category in tea.categories">
+            {{category}}
+          </li>
+        </ul>
+      </p>
+    </td>
+  </tr>
+</table>
