@@ -2,19 +2,7 @@ app.controller('cartControl', function ($scope, itemsAndCart) {
   $scope.categories = itemsAndCart.getCategories();
   $scope.cartStatus = itemsAndCart.getCartCount();
   $scope.getTeas = function () {
-    if ($scope.priceSorter != 'ignore' && $scope.priceSorter != undefined) {
-      console.log($scope.priceSorter);
-      $scope.teas = itemsAndCart.getItems().sort(function (a, b) {
-        if ($scope.priceSorter == 'true') {
-          return a.price - b.price;
-        } else {
-          return b.price - a.price;
-        }
-      });
-    } else {
-      console.log('hello?');
-      $scope.teas = itemsAndCart.getItems();
-    }
+    $scope.teas = itemsAndCart.getItems();
   };
 
   $scope.getTeas();
@@ -29,7 +17,7 @@ app.controller('cartControl', function ($scope, itemsAndCart) {
   };
 });
 
-app.controller('checkoutControl', function ($scope, itemsAndCart) {
+app.controller('checkoutControl', function ($scope, itemsAndCart, $location) {
   $scope.updateCart = function (id, quantity) {
     if (quantity != undefined && quantity != '' && quantity !== '0') {
       itemsAndCart.updateQuantity(id, quantity);
@@ -39,7 +27,11 @@ app.controller('checkoutControl', function ($scope, itemsAndCart) {
 
   $scope.removeItem = function (id) {
     itemsAndCart.updateQuantity(id, 0);
-    refreshCart();
+    if (itemsAndCart.getCartCount() === 0) {
+      $location.url('/cart');
+    } else {
+      refreshCart();
+    }
   };
 
   function refreshCart() {

@@ -22,14 +22,14 @@
     </th>
     <th>
       Information
-      <span class="pull-right">Sort By Price: <select ng-init="priceSorter='ignore'" ng-change="getTeas()" ng-model="priceSorter" class="" name="">
-        <option value="ignore">Choose</option>
-        <option value="true">Low To High</option>
-        <option value="false">High To Low</option>
+      <span class="pull-right">Sort By Price: <select ng-init="priceSorter=''" ng-model="priceSorter">
+        <option value="">Choose</option>
+        <option value="+price">Low To High</option>
+        <option value="-price">High To Low</option>
       </select></span>
     </th>
   </tr>
-  <tr ng-repeat="tea in teas | filter:search:strict">
+  <tr ng-repeat="tea in teas | filter:search:strict | orderBy:priceSorter">
     <td>
       <img ng-src="{{tea.imageUrl}}" alt="" />
     </td>
