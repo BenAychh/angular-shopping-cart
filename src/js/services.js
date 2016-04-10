@@ -22,7 +22,7 @@ app.service('itemsAndCart', function () {
   itemsAndCart.getItem = function (id) {
     return getItem().filter(function (teaItem) {
       return teaItem.id == id;
-    });
+    })[0];
   };
 
   itemsAndCart.getCart = function () {
